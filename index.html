@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>登楼 · 中国诗楼地图</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cover.css">
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="labels"></div>
+<div id="fade"></div>
+
+<header id="title" class="ui">
+  <h1>登楼</h1>
+  <span class="seal">中国诗楼地图</span>
+</header>
+
+<!-- 首屏 -->
+<section id="start" class="ui">
+  <p>十四座诗楼，站在大江大河边，等了一千多年。点一座楼，飞过去，登上去。</p>
+  <button id="btnStart">开始登楼</button>
+  <button id="btnFree" class="ghost">看看有哪些楼</button>
+</section>
+
+<!-- 选中一座楼：楼前介绍 -->
+<aside id="extra" class="ui panel" hidden>
+  <button id="extraClose" title="关闭">×</button>
+  <div id="extraBody"></div>
+</aside>
+
+<!-- 楼的列表 -->
+<aside id="list" class="ui panel" hidden>
+  <button id="listClose" title="关闭">×</button>
+  <h2>十四座诗楼</h2>
+  <p class="sub">十四座诗楼都可以登楼参观了。点一座楼的卡片，飞过去看看。</p>
+  <div id="listBody"></div>
+  <button id="btnReset">清空进度，重新开始</button>
+</aside>
+
+<!-- 已登进度 -->
+<div id="prog" class="ui">
+  <div class="count">已登 <b id="climbedNo">0</b> / 14 座诗楼</div>
+  <div class="legend"><span class="g"></span>金色光柱：点一下就能登楼参观（<i id="openNo">0</i> 座）</div>
+  <div class="hint">按住左键拖动地图，右键旋转，滚轮缩放，点楼飞过去</div>
+  <div class="hint t">单指拖动地图，双指缩放、旋转，点楼飞过去</div>
+</div>
+
+<div id="card" class="ui panel" hidden><h3></h3><p></p><small>点一下关闭</small></div>
+
+<nav id="bar" class="ui">
+  <div class="group"><span>诗楼</span>
+    <button id="btnList">楼的列表</button>
+  </div>
+  <div class="group"><span>看图</span>
+    <button data-view="all">全图</button>
+    <button data-view="north">黄河一带</button>
+    <button data-view="south">江南</button>
+    <button data-view="west">西南</button>
+  </div>
+  <div class="group"><span>更多</span>
+    <button id="btnLabels" class="on">地名</button>
+    <button id="btnRotate">环绕</button>
+    <button id="btnQuality" title="电脑卡顿时可以调低">画质：高</button>
+    <button id="btnFull">全屏</button>
+    <button id="btnHide" title="按 H 键恢复">隐藏界面</button>
+  </div>
+</nav>
+
+<div id="loading"><div><i></i><h1>登楼</h1><p>正在铺开万里山河……</p></div></div>
+
+<script src="lib/three.min.js"></script>
+<script src="lib/OrbitControls.js"></script>
+<script src="lib/CopyShader.js"></script>
+<script src="lib/LuminosityHighPassShader.js"></script>
+<script src="lib/EffectComposer.js"></script>
+<script src="lib/UnrealBloomPass.js"></script>
+<script src="lib/Water.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/map.js"></script>
+<script src="js/post.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

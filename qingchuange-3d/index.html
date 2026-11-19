@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>跟着小鹦游晴川阁</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="labels"></div>
+<div id="fade"></div>
+
+<header id="title" class="ui">
+  <h1>晴川阁</h1>
+  <span class="seal">楚天第一楼</span>
+  <p>跟着小鹦，隔江望黄鹤</p>
+</header>
+
+<section id="start" class="ui">
+  <p>没去过武汉也没关系——小鹦带你登上晴川阁，看一看“晴川历历汉阳树，芳草萋萋鹦鹉洲”。</p>
+  <button id="btnStart">开始参观</button>
+  <button id="btnFree" class="ghost">我想自己逛逛</button>
+</section>
+
+<aside id="guide" class="ui panel" hidden>
+  <div class="who">
+    <div class="avatar">鹦</div>
+    <div class="name"><b>小鹦导游</b><span id="stopNo"></span></div>
+    <button id="btnVoice" class="on" title="打开或关闭讲解声音">🔊 声音</button>
+    <button id="btnQuit" title="退出导览，自己随便看">自己逛</button>
+  </div>
+  <h2 id="stopTitle"></h2>
+  <p id="stopText"></p>
+  <button id="btnOut" hidden>走到外面看风景</button>
+  <div id="dots"></div>
+  <div class="row">
+    <button id="btnPrev">◀ 上一站</button>
+    <button id="btnSay">再听一遍</button>
+    <button id="btnNext" class="main">下一站 ▶</button>
+  </div>
+</aside>
+
+<aside id="extra" class="ui panel" hidden>
+  <button id="extraClose" title="关闭">×</button>
+  <div id="extraBody"></div>
+</aside>
+
+<div id="card" class="ui panel" hidden><h3></h3><p></p><small>点一下关闭</small></div>
+
+<nav id="bar" class="ui">
+  <div class="group"><span>导览</span>
+    <button id="btnTour">跟小鹦参观</button>
+  </div>
+  <div class="group"><span>进楼</span>
+    <button data-floor="0">一楼</button>
+    <button data-floor="1">二楼</button>
+    <button data-floor="2">禹稷行宫</button>
+  </div>
+  <div class="group"><span>看楼</span>
+    <button data-view="overview">全景</button>
+    <button data-view="front">正面</button>
+    <button data-view="lookup">仰望</button>
+    <button data-view="bird">俯瞰</button>
+    <button data-view="river">江上</button>
+    <button data-view="crane">黄鹤楼</button>
+  </div>
+  <div class="group"><span>时辰</span>
+    <button data-env="day" class="on">白天</button>
+    <button data-env="dusk">傍晚</button>
+    <button data-env="night">夜晚</button>
+    <button id="btnMist">起雾</button>
+  </div>
+  <div class="group"><span>更多</span>
+    <button data-panel="map">它在哪儿</button>
+    <button data-panel="life">楼的一生</button>
+    <button data-panel="facts">小知识</button>
+    <button id="btnLabels" class="on">标注</button>
+    <button id="btnRotate">环绕</button>
+    <button id="btnQuality" title="电脑卡顿时可以调低">画质：高</button>
+    <button id="btnFull">全屏</button>
+    <button id="btnHide" title="按 H 键恢复">隐藏界面</button>
+  </div>
+</nav>
+
+<div id="loading"><div><i></i><h1>晴川阁</h1><p>正在铺开晴川江树……</p></div></div>
+
+<script src="lib/three.min.js"></script>
+<script src="lib/OrbitControls.js"></script>
+<script src="lib/CopyShader.js"></script>
+<script src="lib/LuminosityHighPassShader.js"></script>
+<script src="lib/EffectComposer.js"></script>
+<script src="lib/UnrealBloomPass.js"></script>
+<script src="lib/Water.js"></script>
+<script src="audio/manifest.js" onerror="void 0"></script>
+<script src="js/engine.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/tower.js"></script>
+<script src="js/world-core.js"></script>
+<script src="js/world.js"></script>
+<script src="../interior/catalog.js"></script>
+<script src="../interior/exhibits.js"></script>
+<script src="js/interior-core.js"></script>
+<script src="js/interior.js"></script>
+<script src="js/post.js"></script>
+<script src="js/tour.js"></script>
+<script src="js/main.js"></script>
+<script>/* 点左上角题签回到登楼地图 */(function () { var t = document.getElementById("title"); t.style.pointerEvents = "auto"; t.style.cursor = "pointer"; t.title = "回到登楼地图"; t.addEventListener("click", function () { if (document.body.classList.contains("started")) location.href = "../index.html"; }); })();</script>
+<script>/* 手机上点站名可以收起、展开讲解 */(function () { var t = document.getElementById("stopTitle"); if (t) t.addEventListener("click", function () { document.body.classList.toggle("mini"); }); })();</script>
+</body>
+</html>

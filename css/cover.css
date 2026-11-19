@@ -1,0 +1,90 @@
+/* 登楼封面：在课件通用样式之上，补楼的标签、楼前介绍、楼的列表、进度 */
+body:not(.started) #prog { display: none; }
+
+/* 楼的标签：楷体楼名，可参观的金边，修建中的素白 */
+.label.tower { padding: 3px 10px 4px 8px; margin-top: -30px; display: flex; align-items: baseline; gap: 6px; border-left-color: #c9c4b8; background: rgba(14, 12, 10, .55); }
+.label.tower::before { background: #d8d2c4; }
+.label.tower b { font-family: var(--kai); font-size: 19px; letter-spacing: 2px; color: #ece6d8; font-weight: 700; }
+.label.tower small { font-size: 12px; opacity: .7; }
+.label.tower.open { border-left-color: var(--gold); border-color: var(--line2); background: rgba(24, 18, 10, .7); }
+.label.tower.open::before { background: var(--gold); }
+.label.tower.open b { color: var(--gold2); }
+.label.tower.done b::after { content: "已登"; font-family: var(--hei); font-size: 11px; margin-left: 6px; padding: 1px 4px; background: var(--red); color: #f8ead6; border-radius: 2px; vertical-align: 3px; letter-spacing: 1px; }
+.label.tower.sel, .label.tower.hover { background: var(--gold); border-color: var(--gold2); }
+.label.tower.sel b, .label.tower.hover b, .label.tower.sel small, .label.tower.hover small { color: #1c140a; }
+
+/* 楼前介绍 */
+.tw-head { display: flex; align-items: center; gap: 12px; padding-right: 36px; margin-bottom: 2px; }
+#extra .tw-head h2 { font-size: 40px; letter-spacing: 6px; margin: 0; padding: 0; }
+.sealx { font-family: var(--kai); font-size: 14px; letter-spacing: 3px; padding: 4px 8px 3px 10px; background: var(--red); color: #f8ead6; border-radius: 2px; box-shadow: 0 2px 8px rgba(0, 0, 0, .35); white-space: nowrap; }
+#extra .where { font-size: 15px; opacity: .8; letter-spacing: 2px; margin: 4px 0 6px; }
+#extra .where em { font-style: normal; margin-left: 10px; padding: 1px 6px; background: var(--red); color: #f8ead6; font-size: 12px; border-radius: 2px; }
+#extra .go { display: block; width: 100%; margin: 14px 0 6px; padding: 12px; font-family: var(--kai); font-size: 26px; letter-spacing: 10px; }
+#extra .go:disabled { cursor: default; opacity: .6; font-size: 19px; letter-spacing: 4px; }
+#extra .row { margin-top: 12px; }
+#extra .row button { font-size: 14px; padding: 7px 4px; }
+
+/* 楼的列表 */
+#list { top: 20px; right: 20px; width: 470px; max-height: calc(100vh - 150px); overflow-y: auto; padding: 18px 22px 20px; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+#list h2 { font-size: 27px; color: var(--gold2); letter-spacing: 3px; }
+#list .sub { font-size: 14.5px; opacity: .75; margin: 4px 0 12px; line-height: 1.6; }
+#listClose { position: absolute; top: 10px; right: 12px; font-size: 18px; line-height: 1; padding: 3px 9px; border-color: transparent; }
+#listBody { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tcard { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; text-align: left; padding: 9px 12px; white-space: normal; }
+.tcard b { font-family: var(--kai); font-size: 22px; letter-spacing: 2px; color: #ece6d8; }
+.tcard span { grid-column: 1; font-size: 12.5px; opacity: .7; }
+.tcard .st { grid-column: 2; grid-row: 1 / 3; align-self: center; font-style: normal; font-size: 12px; padding: 2px 6px; border: 1px solid rgba(220, 214, 200, .3); color: #cfc8b8; border-radius: 2px; }
+.tcard.open b { color: var(--gold2); }
+.tcard .st.open { border-color: var(--gold); color: var(--gold2); }
+.tcard .st.done { background: var(--red); border-color: var(--red); color: #f8ead6; }
+#btnReset { margin-top: 14px; width: 100%; font-size: 13px; opacity: .8; }
+
+/* 已登进度 */
+#prog { left: 26px; bottom: 26px; text-shadow: 0 2px 10px rgba(0, 0, 0, .85), 0 0 3px rgba(0, 0, 0, .7); pointer-events: none; }
+#prog .count { font-size: 17px; letter-spacing: 2px; }
+#prog .count b { font-family: var(--kai); font-size: 44px; color: #ffd27a; margin: 0 4px; }
+#prog .legend { font-size: 13.5px; margin-top: 2px; opacity: .9; display: flex; align-items: center; gap: 6px; }
+#prog .legend i { font-style: normal; }
+#prog .legend span { display: inline-block; width: 3px; height: 16px; margin-left: 8px; }
+#prog .legend span:first-child { margin-left: 0; }
+#prog .legend .g { background: #ffcf6a; box-shadow: 0 0 6px 1px rgba(255, 207, 106, .9); }
+#prog .legend .w { background: #e8eef8; box-shadow: 0 0 6px 1px rgba(232, 238, 248, .7); }
+#prog .hint { font-size: 13px; margin-top: 6px; opacity: .75; letter-spacing: 1px; }
+@media (max-width: 1100px) { #list { width: 340px; right: 10px; } #listBody { grid-template-columns: 1fr; } #prog { bottom: 130px; } }
+
+/* ===== 封面：手机、平板自动适配 ===== */
+#prog .hint.t { display: none; }
+@media (pointer: coarse) { #prog .hint { display: none; } #prog .hint.t { display: block; } }
+@media (max-width: 760px), (max-height: 500px) and (orientation: landscape) {
+  .label.tower { margin-top: -22px; padding: 2px 7px 3px 6px; gap: 4px; }
+  .label.tower b { font-size: 14px; letter-spacing: 1px; }
+  .label.tower small { display: none; }
+  .label.geo { display: none; }
+  .label.tower.done b::after { font-size: 10px; margin-left: 4px; }
+  #prog .count { font-size: 13px; letter-spacing: 1px; }
+  #prog .count b { font-size: 26px; }
+  #prog .legend { font-size: 11.5px; }
+  #prog .hint { font-size: 11.5px; margin-top: 3px; }
+  #list { padding: 12px 14px 14px; overscroll-behavior: contain; }
+  #list h2 { font-size: 21px; }
+  #list .sub { font-size: 13px; margin: 2px 0 8px; }
+  #listClose { top: 6px; right: 6px; padding: 6px 10px; }
+  #listBody { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .tcard { padding: 7px 9px; }
+  .tcard b { font-size: 18px; letter-spacing: 1px; }
+  .tcard span { font-size: 11.5px; }
+  .tcard .st { font-size: 11px; padding: 1px 4px; }
+  #extra .tw-head h2 { font-size: 28px; letter-spacing: 3px; }
+  .sealx { font-size: 12px; letter-spacing: 2px; }
+  #extra .go { font-size: 21px; letter-spacing: 6px; padding: 9px; margin: 10px 0 4px; }
+  #extra .row button { font-size: 13px; padding: 7px 3px; }
+}
+@media (max-width: 760px) {
+  #prog { left: 12px; top: calc(48px + env(safe-area-inset-top)); bottom: auto; }
+  #list, #extra { left: 6px; right: 6px; width: auto; top: auto; bottom: calc(52px + env(safe-area-inset-bottom)); max-height: 58vh; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  #prog { left: calc(10px + env(safe-area-inset-left)); top: 40px; bottom: auto; }
+  #prog .hint, #prog .hint.t { display: none; }
+  #list, #extra { right: calc(6px + env(safe-area-inset-right)); top: 8px; width: min(46vw, 420px); max-height: calc(100vh - 62px); }
+}
